@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:spot_me/questionnaire_page.dart';
+//import 'package:spot_me/questionnaire_page.dart';
+import 'package:spot_me/home_screen.dart';
+
 
 class LogInPage extends StatelessWidget {
   const LogInPage({super.key});
@@ -56,7 +58,7 @@ class LogInPage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const QuestionnairePage()),
+                      MaterialPageRoute(builder: (context) => const HomeScreen()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
