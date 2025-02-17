@@ -13,49 +13,40 @@ class _MatchScreenState extends State<MatchScreen> {
   // List of fake user profiles
   final List<Map<String, dynamic>> _users = [
     {
-      'name': 'Alex',
-      'age': 25,
+      'name': 'Priyangshu Bhowmik',
       'bio': 'Looking for a gym partner for morning workouts. I focus on strength training.',
-      'image': 'https://picsum.photos/id/1025/400/600',
-      'gym': 'Fitness First',
-      'workoutTime': 'Morning',
-      'experience': 'Intermediate',
+      'image': 'https://picsum.photos/id/1025/400/600', // You'll replace this with actual image
+      'gym': 'SWRC',
+      'experience': '1+ Yrs',
+      'gender_preference': 'No Preference',
+      'workout_dependency': 'Individual workouts',
+      'workout_style': 'Strength Training',
+      'split': 'M F - Pull, T H - Push, W - Legs',
+      'level': 'Junior',
     },
     {
-      'name': 'Jamie',
-      'age': 28,
+      'name': 'Alex',
       'bio': 'Cardio enthusiast, training for my first marathon. Need someone to keep me accountable!',
       'image': 'https://picsum.photos/id/1027/400/600',
-      'gym': 'Planet Fitness',
-      'workoutTime': 'Evening',
-      'experience': 'Beginner',
-    },
-    {
-      'name': 'Taylor',
-      'age': 30,
-      'bio': 'Powerlifter looking for a spotter. I train 5 days a week and compete regularly.',
-      'image': 'https://picsum.photos/id/1012/400/600',
-      'gym': 'Gold\'s Gym',
-      'workoutTime': 'Afternoon',
-      'experience': 'Advanced',
-    },
-    {
-      'name': 'Jordan',
-      'age': 24,
-      'bio': 'New to town, looking for gym buddies who enjoy circuit training and HIIT workouts.',
-      'image': 'https://picsum.photos/id/1011/400/600',
-      'gym': 'LA Fitness',
-      'workoutTime': 'Flexible',
-      'experience': 'Intermediate',
+      'gym': 'CAG',
+      'experience': '3-6 months',
+      'gender_preference': 'Female',
+      'workout_dependency': 'Spotter',
+      'workout_style': 'HIIT/Cardio',
+      'split': 'Full body, 3x per week',
+      'level': 'Beginner',
     },
     {
       'name': 'Sam',
-      'age': 27,
-      'bio': 'Yoga and CrossFit enthusiast. I believe in balanced fitness and mindfulness.',
+      'bio': 'Yoga and swimming enthusiast. I believe in balanced fitness and mindfulness.',
       'image': 'https://picsum.photos/id/1062/400/600',
-      'gym': 'CrossFit Box',
-      'workoutTime': 'Morning',
-      'experience': 'Advanced',
+      'gym': 'RFC, SWR',
+      'experience': '6-12 months',
+      'gender_preference': 'Male',
+      'workout_dependency': 'Individual workouts',
+      'workout_style': 'Yoga, Swimming',
+      'split': 'Morning sessions, flexibility focused',
+      'level': 'Intermediate',
     },
   ];
 
@@ -70,7 +61,8 @@ class _MatchScreenState extends State<MatchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Find Matches",
+        title: Text(
+          "Find Matches",
           style: GoogleFonts.montserrat(
             fontWeight: FontWeight.bold,
             color: Colors.white,
@@ -256,39 +248,15 @@ class _MatchScreenState extends State<MatchScreen> {
                           ],
                         ),
                       ),
-                      child: Row(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${user['name']}, ${user['age']}',
-                                  style: GoogleFonts.montserrat(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.fitness_center,
-                                      color: Colors.white70,
-                                      size: 16,
-                                    ),
-                                    const SizedBox(width: 5),
-                                    Text(
-                                      user['gym'],
-                                      style: GoogleFonts.montserrat(
-                                        fontSize: 14,
-                                        color: Colors.white70,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                          Text(
+                            user['name'],
+                            style: GoogleFonts.montserrat(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
                         ],
@@ -344,39 +312,48 @@ class _MatchScreenState extends State<MatchScreen> {
             ),
           ),
           Expanded(
-            flex: 3,
+            flex: 4,
             child: Padding(
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // First row of tags
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildInfoTag('${user['workoutTime']} Workouts', Colors.blue),
+                      _buildInfoTag(user['gym'], Colors.blue),
+                      const SizedBox(width: 8),
                       _buildInfoTag(user['experience'], Colors.orange),
                     ],
                   ),
-                  const SizedBox(height: 15),
-                  Text(
-                    'About Me',
-                    style: GoogleFonts.montserrat(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blueGrey[900],
+                  const SizedBox(height: 8),
+                  
+                  // If the user has a split information, show it
+                  if (user['split'] != null) 
+                    Container(
+                      width: double.infinity,
+                      margin: const EdgeInsets.only(bottom: 8),
+                      child: _buildInfoTag(user['split'], Colors.purple),
                     ),
+                  
+                  // Second row of tags - workout style and dependency
+                  Row(
+                    children: [
+                      _buildInfoTag(user['workout_style'], Colors.green),
+                      const SizedBox(width: 8),
+                      if (user['level'] != null)
+                        _buildInfoTag(user['level'], Colors.red),
+                    ],
                   ),
-                  const SizedBox(height: 5),
-                  Expanded(
-                    child: Text(
-                      user['bio'],
-                      style: GoogleFonts.montserrat(
-                        fontSize: 14,
-                        color: Colors.blueGrey[700],
-                      ),
-                      maxLines: 4,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                  const SizedBox(height: 8),
+                  
+                  // Third row - other tags
+                  Row(
+                    children: [
+                      _buildInfoTag(user['workout_dependency'], Colors.teal),
+                      const SizedBox(width: 8),
+                      _buildInfoTag('Prefers: ' + user['gender_preference'], Colors.indigo),
+                    ],
                   ),
                 ],
               ),
@@ -388,19 +365,24 @@ class _MatchScreenState extends State<MatchScreen> {
   }
 
   Widget _buildInfoTag(String text, Color color) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: color, width: 1),
-      ),
-      child: Text(
-        text,
-        style: GoogleFonts.montserrat(
-          fontSize: 12,
-          color: color,
-          fontWeight: FontWeight.w500,
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: color, width: 1),
+        ),
+        child: Text(
+          text,
+          style: GoogleFonts.montserrat(
+            fontSize: 12,
+            color: color,
+            fontWeight: FontWeight.w500,
+          ),
+          textAlign: TextAlign.center,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
       ),
     );
@@ -574,7 +556,7 @@ class _MatchScreenState extends State<MatchScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     ),
                     child: Text(
-                      "Keep Swiping",
+                      "Continue",
                       style: GoogleFonts.montserrat(
                         fontWeight: FontWeight.bold,
                       ),
@@ -604,7 +586,7 @@ class _MatchScreenState extends State<MatchScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     ),
                     child: Text(
-                      "Send Message",
+                      "Message",
                       style: GoogleFonts.montserrat(
                         fontWeight: FontWeight.bold,
                       ),
@@ -620,214 +602,171 @@ class _MatchScreenState extends State<MatchScreen> {
   }
 
   void _showProfileDetails(Map<String, dynamic> user) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        height: MediaQuery.of(context).size.height * 0.75,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(25),
-            topRight: Radius.circular(25),
-          ),
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    builder: (context) => Container(
+      height: MediaQuery.of(context).size.height * 0.6, // Reduced height
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(25),
+          topRight: Radius.circular(25),
         ),
-        child: Column(
-          children: [
-            Container(
-              height: 5,
-              width: 40,
-              margin: const EdgeInsets.symmetric(vertical: 10),
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(5),
-              ),
+      ),
+      child: Column(
+        children: [
+          Container(
+            height: 5,
+            width: 40,
+            margin: const EdgeInsets.symmetric(vertical: 10),
+            decoration: BoxDecoration(
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(5),
             ),
-            Expanded(
-              child: SingleChildScrollView(
+          ),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.4,
-                      width: double.infinity,
-                      child: Stack(
-                        fit: StackFit.expand,
-                        children: [
-                          Image.network(
-                            user['image'],
-                            fit: BoxFit.cover,
-                          ),
-                          Positioned(
-                            top: 20,
-                            left: 20,
-                            child: CircleAvatar(
-                              backgroundColor: Colors.black54,
-                              child: IconButton(
-                                icon: const Icon(Icons.arrow_back, color: Colors.white),
-                                onPressed: () => Navigator.pop(context),
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              padding: const EdgeInsets.all(20),
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                  colors: [
-                                    Colors.black.withOpacity(0.8),
-                                    Colors.transparent,
-                                  ],
-                                ),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '${user['name']}, ${user['age']}',
-                                    style: GoogleFonts.montserrat(
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.fitness_center,
-                                        color: Colors.white70,
-                                        size: 16,
-                                      ),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        user['gym'],
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 16,
-                                          color: Colors.white70,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              _buildInfoTag('${user['workoutTime']} Workouts', Colors.blue),
-                              const SizedBox(width: 10),
-                              _buildInfoTag(user['experience'], Colors.orange),
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          Text(
-                            'About Me',
+                    // Name and close button
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            user['name'],
                             style: GoogleFonts.montserrat(
-                              fontSize: 20,
+                              fontSize: 28,
                               fontWeight: FontWeight.bold,
                               color: Colors.blueGrey[900],
                             ),
                           ),
-                          const SizedBox(height: 10),
-                          Text(
-                            user['bio'],
-                            style: GoogleFonts.montserrat(
-                              fontSize: 16,
-                              color: Colors.blueGrey[700],
+                        ),
+                        IconButton(
+                          icon: const Icon(Icons.close, color: Colors.grey),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    
+                    // Display all tags in a wrapped layout
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 8,
+                      children: [
+                        _buildInfoTag(user['gym'], Colors.blue),
+                        _buildInfoTag(user['experience'], Colors.orange),
+                        _buildInfoTag(user['workout_style'], Colors.green),
+                        _buildInfoTag(user['workout_dependency'], Colors.teal),
+                        _buildInfoTag('Prefers: ' + user['gender_preference'], Colors.indigo),
+                        if (user['level'] != null)
+                          _buildInfoTag(user['level'], Colors.red),
+                        if (user['split'] != null)
+                          _buildInfoTag(user['split'], Colors.purple),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    
+                    // About me section
+                    Text(
+                      'About Me',
+                      style: GoogleFonts.montserrat(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blueGrey[900],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      user['bio'],
+                      style: GoogleFonts.montserrat(
+                        fontSize: 16,
+                        color: Colors.blueGrey[700],
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    
+                    // Action buttons
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              _skipCurrentUser();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red[400],
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.close),
+                                const SizedBox(width: 5),
+                                Text(
+                                  'Skip',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          const SizedBox(height: 30),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    _skipCurrentUser();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.red[400],
-                                    foregroundColor: Colors.white,
-                                    padding: const EdgeInsets.symmetric(vertical: 12),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Icon(Icons.close),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        'Skip',
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
+                        ),
+                        const SizedBox(width: 15),
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              _likeCurrentUser();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.green[400],
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.favorite),
+                                const SizedBox(width: 5),
+                                Text(
+                                  'Like',
+                                  style: GoogleFonts.montserrat(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ),
-                              const SizedBox(width: 15),
-                              Expanded(
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    _likeCurrentUser();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.green[400],
-                                    foregroundColor: Colors.white,
-                                    padding: const EdgeInsets.symmetric(vertical: 12),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Icon(Icons.favorite),
-                                      const SizedBox(width: 5),
-                                      Text(
-                                        'Like',
-                                        style: GoogleFonts.montserrat(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
-    );
-  }
+    ),
+  );
+}
 }
