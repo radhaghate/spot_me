@@ -1,10 +1,11 @@
 import 'package:spot_me/main.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import '../../RUBetting/log_in_page.dart';
+
 import 'package:spot_me/log_in_page.dart';
-//import '../../RUBetting/questionnaire_page.dart';
+
 import 'package:spot_me/questionnaire_page.dart';
+import 'package:spot_me/match_screen.dart'; // Import the match screen we'll create next
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -37,11 +38,11 @@ class HomeScreen extends StatelessWidget {
                 PopupMenuItem(
                   value: 'logout',
                   height: 50,
-                  child: Text("Log Out", style: GoogleFonts.montserrat(fontSize: 18)), // Increase height for better visibility
+                  child: Text("Log Out", style: GoogleFonts.montserrat(fontSize: 18)),
                 ),
               ];
             },
-            constraints: const BoxConstraints(minWidth: 200), // Make dropdown wider
+            constraints: const BoxConstraints(minWidth: 200),
           ),
         ],
       ),
@@ -49,7 +50,7 @@ class HomeScreen extends StatelessWidget {
         onWillPop: () async {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => const HomePage()), // Ensure it navigates back to Welcome Page
+            MaterialPageRoute(builder: (context) => const HomePage()),
           );
           return false;
         },
@@ -72,6 +73,29 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 15.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const MatchScreen()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blueGrey[700],
+                      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 80),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    child: const Text("Find Matches", style: TextStyle(fontSize: 18, color: Colors.white)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
@@ -101,4 +125,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+
 
