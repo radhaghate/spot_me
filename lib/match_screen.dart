@@ -15,10 +15,34 @@ class _MatchScreenState extends State<MatchScreen> {
     {
       'name': 'Priyangshu Bhowmik',
       'bio': 'Looking for a gym partner for morning workouts. I focus on strength training.',
-      'image': 'https://picsum.photos/id/1025/400/600', // You'll replace this with actual image
+      'image': 'https://picsum.photos/id/1025/400/600', // replace this with actual image
       'gym': 'SWRC',
       'experience': '1+ Yrs',
       'gender_preference': 'No Preference',
+      'workout_dependency': 'Individual workouts',
+      'workout_style': 'Strength Training',
+      'split': 'M F - Pull, T H - Push, W - Legs',
+      'level': 'Junior',
+    },
+    {
+      'name': 'Abi Jayakumar',
+      'bio': 'Looking for a gym partner for morning workouts. I focus on strength training.',
+      'image': 'https://media.licdn.com/dms/image/v2/D4E03AQGAvNeOAVq0-w/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1732162240204?e=1745452800&v=beta&t=f6neGZQw0fvXXz7a-sm2e88ECKfyTouHKE3XDTuimUw', // replace this with actual image
+      'gym': 'LRC',
+      'experience': '4+ Yrs',
+      'gender_preference': 'Female',
+      'workout_dependency': 'Individual workouts',
+      'workout_style': 'Strength Training',
+      'split': 'M F - Pull, T H - Push, W - Legs',
+      'level': 'Junior',
+    },
+    {
+      'name': 'Krish Kharbanda',
+      'bio': 'Looking for a gym partner for morning workouts. I focus on strength training.',
+      'image': 'https://media.licdn.com/dms/image/v2/D4E35AQEkyGLr7KDmHw/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1734807909596?e=1740438000&v=beta&t=QOyGykVCFGl2695TfLzsUm-WUDRN6ZVlAlokngPMh1o', // replace this with actual image
+      'gym': 'LRC',
+      'experience': '4+ Yrs',
+      'gender_preference': 'Female',
       'workout_dependency': 'Individual workouts',
       'workout_style': 'Strength Training',
       'split': 'M F - Pull, T H - Push, W - Legs',
@@ -502,11 +526,8 @@ class _MatchScreenState extends State<MatchScreen> {
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            gradient: LinearGradient(
-              colors: [Colors.deepPurple, Colors.pink],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+            //color: Color(0xFF055C24),
+            color: Color(0x00006600),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
