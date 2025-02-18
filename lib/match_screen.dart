@@ -10,12 +10,12 @@ class MatchScreen extends StatefulWidget {
 }
 
 class _MatchScreenState extends State<MatchScreen> {
-  // List of fake user profiles
+  // List of user profiles
   final List<Map<String, dynamic>> _users = [
     {
       'name': 'Priyangshu Bhowmik',
       'bio': 'Looking for a gym partner for morning workouts. I focus on strength training.',
-      'image': 'https://picsum.photos/id/1025/400/600', // replace this with actual image
+      'image': 'https://media.licdn.com/dms/image/v2/D4E03AQE36XPb2RVJzg/profile-displayphoto-shrink_400_400/B4EZRid139G0Ak-/0/1736818778100?e=1745452800&v=beta&t=j8GrKSkzvggGlCICKlCJphCPPMsAcjgSTHrImwOYSpE', // replace this with actual image
       'gym': 'SWRC',
       'experience': '1+ Yrs',
       'gender_preference': 'No Preference',
@@ -49,9 +49,9 @@ class _MatchScreenState extends State<MatchScreen> {
       'level': 'Junior',
     },
     {
-      'name': 'Alex',
+      'name': 'Shiven Patel',
       'bio': 'Cardio enthusiast, training for my first marathon. Need someone to keep me accountable!',
-      'image': 'https://picsum.photos/id/1027/400/600',
+      'image': 'https://media.licdn.com/dms/image/v2/D4E03AQGIjtyKQWMO9Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1730229621913?e=1745452800&v=beta&t=kH_PZaIQScXsnLCKVeiAAuUuq-2YtkvKW8WIn5X0SfU',
       'gym': 'CAG',
       'experience': '3-6 months',
       'gender_preference': 'Female',
@@ -61,9 +61,9 @@ class _MatchScreenState extends State<MatchScreen> {
       'level': 'Beginner',
     },
     {
-      'name': 'Sam',
+      'name': 'Sameer Jiandani',
       'bio': 'Yoga and swimming enthusiast. I believe in balanced fitness and mindfulness.',
-      'image': 'https://picsum.photos/id/1062/400/600',
+      'image': 'https://media.licdn.com/dms/image/v2/D4D03AQGf6kCz5aIHWg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1683144225725?e=1745452800&v=beta&t=zFqZgo33HZbGNk6cQ7UQQhJo-ZNkIucQGWUil_OgCeQ',
       'gym': 'RFC, SWR',
       'experience': '6-12 months',
       'gender_preference': 'Male',
@@ -526,8 +526,9 @@ class _MatchScreenState extends State<MatchScreen> {
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            //color: Color(0xFF055C24),
-            color: Color(0x00006600),
+            color: Color(0xFF055C24),
+            //color: Color(0x00006600),
+            //color: Color.fromARGB(0, 132, 92, 12),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
